@@ -30,6 +30,7 @@ module Middleman::CoreExtensions
       resources.each do |resource|
         next if resource.ignored?
         next if resource.file_descriptor.nil?
+        next unless resource.template?
 
         fmdata = data(resource.file_descriptor[:full_path].to_s).first.dup
 
