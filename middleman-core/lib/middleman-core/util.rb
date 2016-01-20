@@ -18,6 +18,7 @@ require 'middleman-core/sitemap/resource'
 require 'hashie'
 
 # For URI templating
+require 'public_suffix'
 require 'addressable/uri'
 require 'addressable/template'
 require 'active_support/inflector'
@@ -357,7 +358,7 @@ module Middleman
         begin
           uri = ::Addressable::URI.parse(asset_path)
 
-          if uri.relative? && uri.host.nil? && !asset_path.match(/^[^\/].*[a-z]+\.[a-z]+\/.*/) && (result = yield(asset_path))
+          if uri.relative? && uri.host.nil? && !::PublicSuffix.valid?(asset_path) && (result = yield(asset_path))
             "#{opening_character}#{result}"
           else
             match
