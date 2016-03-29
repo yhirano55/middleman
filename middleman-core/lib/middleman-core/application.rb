@@ -236,7 +236,9 @@ module Middleman
                                       :before_render,
                                       :after_render,
                                       :before_server,
-                                      :reload
+                                      :reload,
+                                      :render_layout,
+                                      :render_partial
                                     ])
 
         @middleware = Set.new
